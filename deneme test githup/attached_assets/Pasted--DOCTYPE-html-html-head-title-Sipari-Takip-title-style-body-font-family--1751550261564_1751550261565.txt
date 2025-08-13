@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sipariş Takip</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background-color: #f4f4f4; }
+    input, select { padding: 8px; margin: 5px; width: 100%; }
+    .card { background: #fff; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    button { padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Sipariş Takip Uygulaması</h2>
+  <input type="text" id="listeNo" placeholder="Liste No">
+  <input type="text" id="siparisiVeren" placeholder="Siparişi Veren">
+  <input type="text" id="urunListesi" placeholder="Ürün Listesi">
+  <input type="number" id="adet" placeholder="Adet">
+
+  <label>Sipariş Durumu:</label>
+  <select id="siparisDurumu">
+    <option>Hazırlandı</option>
+    <option>Teslim Edildi</option>
+    <option>Teslim Edilmedi</option>
+  </select>
+
+  <label>Tahsilat Durumu:</label>
+  <select id="tahsilatDurumu">
+    <option>Tahsil Edildi</option>
+    <option>Tahsil Edilmedi</option>
+  </select>
+
+  <label>Fatura Durumu:</label>
+  <select id="faturaDurumu">
+    <option>Fatura Kesildi</option>
+    <option>Fatura Kesilecek</option>
+    <option>Fatura İstemiyor</option>
+  </select>
+
+  <button onclick="siparisEkle()">Siparişi Ekle</button>
+
+  <div id="liste"></div>
+
+  <script>
+    function siparisEkle() {
+      const listeNo = document.getElementById('listeNo').value;
+      const siparisiVeren = document.getElementById('siparisiVeren').value;
+      const urunListesi = document.getElementById('urunListesi').value;
+      const adet = document.getElementById('adet').value;
+      const siparisDurumu = document.getElementById('siparisDurumu').value;
+      const tahsilatDurumu = document.getElementById('tahsilatDurumu').value;
+      const faturaDurumu = document.getElementById('faturaDurumu').value;
+
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.innerHTML = `
+        <strong>#${listeNo}</strong> - ${siparisiVeren}<br>
+        Ürünler: ${urunListesi} (${adet})<br>
+        Durum: ${siparisDurumu}, ${tahsilatDurumu}, ${faturaDurumu}
+      `;
+
+      document.getElementById('liste').appendChild(div);
+
+      // Temizle
+      document.getElementById('listeNo').value = '';
+      document.getElementById('siparisiVeren').value = '';
+      document.getElementById('urunListesi').value = '';
+      document.getElementById('adet').value = '';
+    }
+  </script>
+</body>
+</html>
